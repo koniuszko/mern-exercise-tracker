@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const url = "https://mern-server-61m0.onrender.com";
+
 const Exercise = (props) => (
   <tr>
     <td>{props.exercise.username}</td>
@@ -40,7 +42,7 @@ class ExercisesList extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/exercises/")
+      .get(url + "/exercises/")
       .then((response) => {
         this.setState({
           exercises: response.data,
@@ -52,9 +54,7 @@ class ExercisesList extends Component {
   }
 
   deleteExercise(id) {
-    axios
-      .delete("http://localhost:4000/exercises/" + id)
-      .then((res) => console.log(res.data));
+    axios.delete(url + "/exercises/" + id).then((res) => console.log(res.data));
     this.setState({
       exercises: this.state.exercises.filter((el) => el._id !== id),
     });

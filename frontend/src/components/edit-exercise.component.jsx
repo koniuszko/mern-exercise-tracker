@@ -3,6 +3,8 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+const url = "https://mern-server-61m0.onrender.com";
+
 class EditExercise extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ class EditExercise extends Component {
   componentDidMount() {
     const id = window.location.href.split("/")[4];
     axios
-      .get("http://localhost:4000/exercises/" + id)
+      .get(url + "/exercises/" + id)
       .then((response) => {
         this.setState({
           username: response.data.username,
@@ -41,7 +43,7 @@ class EditExercise extends Component {
     console.log(id);
 
     axios
-      .get("http://localhost:4000/users/")
+      .get(url + "/users/")
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -92,7 +94,7 @@ class EditExercise extends Component {
     const id = window.location.href.split("/")[4];
 
     axios
-      .post("http://localhost:4000/exercises/update/" + id, exercise)
+      .post(url + "/exercises/update/" + id, exercise)
       .then((res) => console.log(res.data));
 
     window.location = "/";
